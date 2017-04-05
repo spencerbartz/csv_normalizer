@@ -2,6 +2,7 @@ require 'csv'
 
 class UploadsController < ApplicationController
 
+  # uploads and normalizes csv file
   def upload
       uploaded_io = params[:csvfile]
       raw_csv = uploaded_io.read
