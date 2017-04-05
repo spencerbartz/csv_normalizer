@@ -1,0 +1,21 @@
+<div class="info-message">
+  <h3>Database Normalization Overview</h3>
+  <%= link_to "Home", { controller: "uploads" }, class: "navlink" %>
+</div>
+
+<%= original_csv %>
+
+<h3>Normalized Database Tables</h1>
+<table>
+  <tr>
+    <td class="normalized">
+      <div style="text-align:left"><%= make_table(purchasers) %></div>
+      <%= make_table(items) %>
+      <%= make_table(merchants) %>
+    </td>
+    <td class="normalized">
+      <%= make_table(purchases) %>
+      <%= make_table(sales) %>
+      </td>
+  </tr>
+</table>

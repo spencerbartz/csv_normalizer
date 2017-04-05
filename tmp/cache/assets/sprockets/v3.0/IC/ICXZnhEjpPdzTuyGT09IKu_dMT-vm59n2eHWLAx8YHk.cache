@@ -1,0 +1,5 @@
+I"i(function() {
+  console.log("CoffeeScript is for pansy asses, just like markdown");
+
+}).call(this);
+:ET

@@ -1,0 +1,13 @@
+<div class="controls">
+  <h1>CSV to Database Converter</h1>
+  <%= form_tag({ action: :upload }, multipart: true) do %>
+    <div class="file-field"><%= file_field_tag "csvfile", { accept: ".csv", onchange: "toggleUploadButton()" } %></div>
+    <div id="upload-button" class="upload-button"><%= submit_tag "Upload" %></div>
+  <% end %>
+  <div>
+    <% if Purchaser.all.count > 0 %>
+      <div><%= link_to "Normalization Overview", { controller: "uploads", action: "overview" }, class: "navlink" %></div>
+      <div><%= link_to "Reset database (be patient!)", { controller: "uploads", action: "purge_and_reset" }, class: "navlink" %></div>
+    <% end %>
+  </div>
+</div>

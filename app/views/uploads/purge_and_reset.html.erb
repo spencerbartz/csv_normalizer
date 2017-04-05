@@ -1,0 +1,11 @@
+  <% if Purchaser.all.count == 0 %>
+    <div class="info-message">
+      Database has been purged and recreated with empty tables.
+      <div><%= link_to "Home", { controller: "uploads" }, class: "navlink" %></div>
+    </div>
+  <% else %>
+    <div class="error-message">
+      An error occurred. To purge manually Run 'rake db:drop, rake db:create, and rake db:migrate.'
+      <%= link_to "Home", { controller: "uploads" }, class: "navlink" %>
+    </div>
+  <% end %>

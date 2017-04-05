@@ -1,0 +1,23 @@
+<div class="info-message">
+  <div class="status">
+    <% if status == "Success" %>
+      Congratulations! Your upload was a
+    <% else %>
+      Sorry, your upload was a
+    <% end %>
+    <%= status %>
+  </div>
+  <div class="price-total">
+    Final Balance: <%= number_to_currency(total_price) %>
+  </div>
+  <div class="price-grand-total">
+    Grand Total to Date: <%= number_to_currency(grand_total) %>
+  </div>
+
+  <div class="links">
+    <% if Purchaser.all.count > 0 %>
+      <%= link_to "Overview", { controller: "uploads", action: "overview" }, class: "navlink" %>
+    <% end %>
+    <%= link_to "Home", { controller: "uploads" }, class: "navlink" %>
+  </div>
+</div>
