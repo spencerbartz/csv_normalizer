@@ -1,7 +1,5 @@
-Renewable Funding: Code Challenge
-=================================
-
 Welcome to My CSV Normalizer
+=================================
 
 1. This is a Ruby on Rails project using Rails 4.2.6 and Ruby 2.3.1. In case you
 don't  have Nokogiri installed, [install it now](https://rubygems.org/gems/nokogiri/versions/1.7.0.1).
