@@ -24524,3 +24524,296 @@ ActionController::RoutingError (No route matches [GET] "/README.md"):
   Rendered /var/lib/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
   Rendered /var/lib/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
   Rendered /var/lib/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (55.5ms)
+  [1m[36m (778.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (1189.3ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (81.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreatePurchasers (20170401055803)
+  [1m[35m (449.5ms)[0m  CREATE TABLE `purchasers` (`id` int(11) auto_increment PRIMARY KEY, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (52.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20170401055803')
+  [1m[36m (65.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddNameToPurchaser (20170401061100)
+  [1m[35m (800.6ms)[0m  ALTER TABLE `purchasers` ADD `name` varchar(255)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (36.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20170401061100')
+  [1m[36m (55.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateMerchants (20170402031035)
+  [1m[35m (525.6ms)[0m  CREATE TABLE `merchants` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `address` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (15.9ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20170402031035')
+  [1m[36m (71.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateItems (20170402031604)
+  [1m[35m (390.4ms)[0m  CREATE TABLE `items` (`id` int(11) auto_increment PRIMARY KEY, `description` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (23.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (9.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20170402031604')
+  [1m[36m (65.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddPriceToItem (20170402033651)
+  [1m[35m (782.7ms)[0m  ALTER TABLE `items` ADD `price` decimal(8,2)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20170402033651')
+  [1m[36m (53.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePurchases (20170402034424)
+  [1m[35m (434.9ms)[0m  CREATE TABLE `purchases` (`id` int(11) auto_increment PRIMARY KEY, `purchaser_id` int(11), `item_id` int(11), `quantity` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20170402034424')
+  [1m[36m (55.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSales (20170402034517)
+  [1m[35m (357.2ms)[0m  CREATE TABLE `sales` (`id` int(11) auto_increment PRIMARY KEY, `merchant_id` int(11), `item_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (21.7ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20170402034517')
+  [1m[36m (84.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (56.5ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'codechallenge_development'
+  AND fk.table_name = 'items'
+[0m
+  [1m[35m (0.2ms)[0m  SHOW CREATE TABLE `items`
+  [1m[36m (0.3ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'codechallenge_development'
+  AND fk.table_name = 'merchants'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `merchants`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'codechallenge_development'
+  AND fk.table_name = 'purchasers'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `purchasers`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'codechallenge_development'
+  AND fk.table_name = 'purchases'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `purchases`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'codechallenge_development'
+  AND fk.table_name = 'sales'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `sales`
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-05 02:07:28 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (23.9ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by UploadsController#index as HTML
+  [1m[35m (16.1ms)[0m  SELECT COUNT(*) FROM `purchasers`
+  Rendered uploads/index.html.erb within layouts/application (37.2ms)
+Completed 200 OK in 699ms (Views: 640.7ms | ActiveRecord: 18.4ms)
+
+
+Started GET "/assets/csv_file.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2017-04-05 02:07:29 -0700
+
+
+Started GET "/assets/uploads.self-19685fe4f3425cb42800db866e51f8e66a10f5fd17688dc6534a112f2273b05b.css?body=1" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/csv_file.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/uploads.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/util.self-4903760ca6ddd624fe6e0075fc5b7ee2759c80ed1a5abe5c81af0c56359f7218.js?body=1" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/logo-6cdf6b40ba97769b6b80778601e7c49ede168255d1aac410609a4a930d974636.jpg" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/favicon-a2f3fa1e6ab86cf4434b43f26060deaf03e1cbf79a85bbd0955e21fea318de19.ico" for 127.0.0.1 at 2017-04-05 02:07:30 -0700
+
+
+Started GET "/assets/favicon-a2f3fa1e6ab86cf4434b43f26060deaf03e1cbf79a85bbd0955e21fea318de19.ico" for 127.0.0.1 at 2017-04-05 02:07:34 -0700
+
+
+Started POST "/upload" for 127.0.0.1 at 2017-04-05 02:08:30 -0700
+Processing by UploadsController#upload as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gCg/PPqZM+Qnyg3RaIKW/426sDwSkCgHHyQ15kg73OOmXueDzLrCJYtScnm6g098Qly1x54B1MlyWBluRFisTQ==", "csvfile"=>#<ActionDispatch::Http::UploadedFile:0x007fd1893f0e78 @tempfile=#<Tempfile:/tmp/RackMultipart20170405-10051-vqtpa1.csv>, @original_filename="example_data.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csvfile\"; filename=\"example_data.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Upload"}
+  [1m[36mPurchaser Load (0.4ms)[0m  [1mSELECT  `purchasers`.* FROM `purchasers` WHERE `purchasers`.`name` = 'Snake Plissken' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPurchaser Exists (30.1ms)[0m  [1mSELECT  1 AS one FROM `purchasers` WHERE `purchasers`.`name` = BINARY 'Snake Plissken' LIMIT 1[0m
+  [1m[35mSQL (28.9ms)[0m  INSERT INTO `purchasers` (`name`, `created_at`, `updated_at`) VALUES ('Snake Plissken', '2017-04-05 09:08:30', '2017-04-05 09:08:30')
+  [1m[36m (68.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mItem Load (0.4ms)[0m  SELECT  `items`.* FROM `items` WHERE `items`.`description` = '$10 off $20 of food' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mItem Exists (0.4ms)[0m  SELECT  1 AS one FROM `items` WHERE `items`.`description` = BINARY '$10 off $20 of food' LIMIT 1
+  [1m[36mSQL (34.7ms)[0m  [1mINSERT INTO `items` (`description`, `price`, `created_at`, `updated_at`) VALUES ('$10 off $20 of food', 10.0, '2017-04-05 09:08:30', '2017-04-05 09:08:30')[0m
+  [1m[35m (73.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `purchases` (`purchaser_id`, `item_id`, `quantity`, `created_at`, `updated_at`) VALUES (1, 1, 2, '2017-04-05 09:08:31', '2017-04-05 09:08:31')
+  [1m[36m (55.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mMerchant Load (0.3ms)[0m  SELECT  `merchants`.* FROM `merchants` WHERE `merchants`.`name` = 'Bob\'s Pizza' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mMerchant Exists (0.4ms)[0m  SELECT  1 AS one FROM `merchants` WHERE `merchants`.`name` = BINARY 'Bob\'s Pizza' LIMIT 1
+  [1m[36mMerchant Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM `merchants` WHERE `merchants`.`address` = BINARY '987 Fake St' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `merchants` (`name`, `address`, `created_at`, `updated_at`) VALUES ('Bob\'s Pizza', '987 Fake St', '2017-04-05 09:08:31', '2017-04-05 09:08:31')
+  [1m[36m (126.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `sales` (`item_id`, `merchant_id`, `created_at`, `updated_at`) VALUES (1, 1, '2017-04-05 09:08:31', '2017-04-05 09:08:31')[0m
+  [1m[35m (47.5ms)[0m  COMMIT
+  [1m[36mPurchaser Load (0.4ms)[0m  [1mSELECT  `purchasers`.* FROM `purchasers` WHERE `purchasers`.`name` = 'Amy Pond' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mPurchaser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM `purchasers` WHERE `purchasers`.`name` = BINARY 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `purchasers` (`name`, `created_at`, `updated_at`) VALUES ('Amy Pond', '2017-04-05 09:08:31', '2017-04-05 09:08:31')
+  [1m[36m (95.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mItem Load (0.4ms)[0m  SELECT  `items`.* FROM `items` WHERE `items`.`description` = '$30 of awesome for $10' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mItem Exists (0.3ms)[0m  SELECT  1 AS one FROM `items` WHERE `items`.`description` = BINARY '$30 of awesome for $10' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `items` (`description`, `price`, `created_at`, `updated_at`) VALUES ('$30 of awesome for $10', 10.0, '2017-04-05 09:08:31', '2017-04-05 09:08:31')[0m
+  [1m[35m (129.7ms)[0m  COMMIT
+  [1m[36m (0.9ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `purchases` (`purchaser_id`, `item_id`, `quantity`, `created_at`, `updated_at`) VALUES (2, 2, 5, '2017-04-05 09:08:31', '2017-04-05 09:08:31')
+  [1m[36m (86.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mMerchant Load (0.4ms)[0m  SELECT  `merchants`.* FROM `merchants` WHERE `merchants`.`name` = '\'Tom\'s Awesome Shop\'' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mMerchant Exists (0.4ms)[0m  SELECT  1 AS one FROM `merchants` WHERE `merchants`.`name` = BINARY '\'Tom\'s Awesome Shop\'' LIMIT 1
+  [1m[36mMerchant Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM `merchants` WHERE `merchants`.`address` = BINARY '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (19.8ms)[0m  INSERT INTO `merchants` (`name`, `address`, `created_at`, `updated_at`) VALUES ('\'Tom\'s Awesome Shop\'', '456 Unreal Rd', '2017-04-05 09:08:31', '2017-04-05 09:08:31')
+  [1m[36m (74.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (55.0ms)[0m  [1mINSERT INTO `sales` (`item_id`, `merchant_id`, `created_at`, `updated_at`) VALUES (2, 2, '2017-04-05 09:08:31', '2017-04-05 09:08:31')[0m
+  [1m[35m (76.4ms)[0m  COMMIT
+  [1m[36mPurchaser Load (0.3ms)[0m  [1mSELECT  `purchasers`.* FROM `purchasers` WHERE `purchasers`.`name` = 'Marty McFly' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mPurchaser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM `purchasers` WHERE `purchasers`.`name` = BINARY 'Marty McFly' LIMIT 1[0m
+  [1m[35mSQL (32.4ms)[0m  INSERT INTO `purchasers` (`name`, `created_at`, `updated_at`) VALUES ('Marty McFly', '2017-04-05 09:08:32', '2017-04-05 09:08:32')
+  [1m[36m (63.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mItem Load (0.5ms)[0m  SELECT  `items`.* FROM `items` WHERE `items`.`description` = '$20 Sneakers for $5' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mItem Exists (0.3ms)[0m  SELECT  1 AS one FROM `items` WHERE `items`.`description` = BINARY '$20 Sneakers for $5' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `items` (`description`, `price`, `created_at`, `updated_at`) VALUES ('$20 Sneakers for $5', 5.0, '2017-04-05 09:08:32', '2017-04-05 09:08:32')[0m
+  [1m[35m (51.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `purchases` (`purchaser_id`, `item_id`, `quantity`, `created_at`, `updated_at`) VALUES (3, 3, 1, '2017-04-05 09:08:32', '2017-04-05 09:08:32')
+  [1m[36m (41.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mMerchant Load (0.4ms)[0m  SELECT  `merchants`.* FROM `merchants` WHERE `merchants`.`name` = 'Sneaker Store Emporium' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mMerchant Exists (0.3ms)[0m  SELECT  1 AS one FROM `merchants` WHERE `merchants`.`name` = BINARY 'Sneaker Store Emporium' LIMIT 1
+  [1m[36mMerchant Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM `merchants` WHERE `merchants`.`address` = BINARY '123 Fake St' LIMIT 1[0m
+  [1m[35mSQL (16.6ms)[0m  INSERT INTO `merchants` (`name`, `address`, `created_at`, `updated_at`) VALUES ('Sneaker Store Emporium', '123 Fake St', '2017-04-05 09:08:32', '2017-04-05 09:08:32')
+  [1m[36m (122.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `sales` (`item_id`, `merchant_id`, `created_at`, `updated_at`) VALUES (3, 3, '2017-04-05 09:08:32', '2017-04-05 09:08:32')[0m
+  [1m[35m (64.8ms)[0m  COMMIT
+  [1m[36mPurchaser Load (0.4ms)[0m  [1mSELECT  `purchasers`.* FROM `purchasers` WHERE `purchasers`.`name` = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mItem Load (0.2ms)[0m  SELECT  `items`.* FROM `items` WHERE `items`.`description` = '$20 Sneakers for $5' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `purchases` (`purchaser_id`, `item_id`, `quantity`, `created_at`, `updated_at`) VALUES (1, 3, 4, '2017-04-05 09:08:32', '2017-04-05 09:08:32')
+  [1m[36m (51.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mMerchant Load (0.4ms)[0m  SELECT  `merchants`.* FROM `merchants` WHERE `merchants`.`name` = 'Sneaker Store Emporium' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `sales` (`item_id`, `merchant_id`, `created_at`, `updated_at`) VALUES (3, 3, '2017-04-05 09:08:32', '2017-04-05 09:08:32')
+  [1m[36m (50.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (54.5ms)[0m  SELECT SUM(t.charge) AS total_charge FROM (SELECT p.quantity * i.price AS charge FROM purchases p, items i WHERE p.item_id = i.id) t;
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `purchasers`[0m
+  Rendered uploads/upload_result.html.erb within layouts/application (144.2ms)
+Completed 200 OK in 2108ms (Views: 166.4ms | ActiveRecord: 1674.0ms)
+
+
+Started GET "/assets/csv_file.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2017-04-05 02:08:32 -0700
+
+
+Started GET "/assets/uploads.self-19685fe4f3425cb42800db866e51f8e66a10f5fd17688dc6534a112f2273b05b.css?body=1" for 127.0.0.1 at 2017-04-05 02:08:33 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2017-04-05 02:08:33 -0700
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 127.0.0.1 at 2017-04-05 02:08:33 -0700
+
+
+Started GET "/assets/csv_file.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2017-04-05 02:08:33 -0700
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 127.0.0.1 at 2017-04-05 02:08:33 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 127.0.0.1 at 2017-04-05 02:08:33 -0700
+
+
+Started GET "/assets/uploads.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2017-04-05 02:08:33 -0700
+
+
+Started GET "/assets/util.self-4903760ca6ddd624fe6e0075fc5b7ee2759c80ed1a5abe5c81af0c56359f7218.js?body=1" for 127.0.0.1 at 2017-04-05 02:08:33 -0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for 127.0.0.1 at 2017-04-05 02:08:33 -0700
+
+
+Started GET "/overview" for 127.0.0.1 at 2017-04-05 02:08:41 -0700
+Processing by UploadsController#overview as HTML
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `purchasers`
+  [1m[36mPurchaser Load (0.4ms)[0m  [1mSELECT  `purchasers`.* FROM `purchasers`  ORDER BY `purchasers`.`id` ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `purchasers`
+  [1m[36mPurchaser Load (0.4ms)[0m  [1mSELECT `purchasers`.* FROM `purchasers`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `purchasers`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `purchasers`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `purchasers`
+  [1m[36m (6.1ms)[0m  [1mSELECT COUNT(*) FROM `items`[0m
+  [1m[35mItem Load (0.5ms)[0m  SELECT  `items`.* FROM `items`  ORDER BY `items`.`id` ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `items`[0m
+  [1m[35mItem Load (0.5ms)[0m  SELECT `items`.* FROM `items`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `items`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `items`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `items`[0m
+  [1m[35m (2.3ms)[0m  SELECT COUNT(*) FROM `merchants`
+  [1m[36mMerchant Load (0.4ms)[0m  [1mSELECT  `merchants`.* FROM `merchants`  ORDER BY `merchants`.`id` ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `merchants`
+  [1m[36mMerchant Load (0.6ms)[0m  [1mSELECT `merchants`.* FROM `merchants`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `merchants`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `merchants`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `merchants`
+  [1m[36m (1.4ms)[0m  [1mSELECT COUNT(*) FROM `purchases`[0m
+  [1m[35mPurchase Load (2.9ms)[0m  SELECT  `purchases`.* FROM `purchases`  ORDER BY `purchases`.`id` ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `purchases`[0m
+  [1m[35mPurchase Load (0.3ms)[0m  SELECT `purchases`.* FROM `purchases`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `purchases`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `purchases`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `purchases`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `purchases`
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `sales`[0m
+  [1m[35mSale Load (0.3ms)[0m  SELECT  `sales`.* FROM `sales`  ORDER BY `sales`.`id` ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `sales`[0m
+  [1m[35mSale Load (0.3ms)[0m  SELECT `sales`.* FROM `sales`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `sales`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `sales`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `sales`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `sales`
+  Rendered uploads/overview.html.erb within layouts/application (60.6ms)
+Completed 200 OK in 85ms (Views: 66.5ms | ActiveRecord: 17.7ms)
