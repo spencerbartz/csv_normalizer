@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: 
+  password:
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -40,13 +40,13 @@ test:
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
 #
-#   DATABASE_URL="mysql2://myuser:mypass@localhost/somedatabase"
+DATABASE_URL="mysql://b3077a8b26948c:0b493c09@us-cdbr-iron-east-03.cleardb.net/heroku_c6288dd26c2c935?reconnect=true"
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
+  production:
+    url: <%= ENV['DATABASE_URL'] %>
+
 production:
   <<: *default
   database: codechallenge_production
