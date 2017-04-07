@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: UserName
-  password: PassWord
+  username:
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -48,6 +48,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
+  url: <%= ENV['DATABASE_URL'] %>
   <<: *default
   database: codechallenge_production
   username: codechallenge
